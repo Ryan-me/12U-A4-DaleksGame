@@ -1,6 +1,7 @@
 
-/** This class models a Delek in the game. A Delek has
- *  a position and can advance towards the Doctor.
+/**
+ * This class models a Delek in the game. A Delek has a position and can advance
+ * towards the Doctor.
  */
 public class Dalek {
 
@@ -14,7 +15,8 @@ public class Dalek {
      * @param theCol The column this Dalek starts at.
      */
     public Dalek(int theRow, int theCol) {
-
+        this.col = theCol;
+        this.row = theRow;
     }
 
     /**
@@ -26,7 +28,24 @@ public class Dalek {
      * @param doc The Doctor to move towards.
      */
     public void advanceTowards(Doctor doc) {
-
+        // if on the same row dont change the row value
+        if (this.row == doc.getRow()) {
+        } else {// if there not on the same row move closer to the doctor
+            if (this.row - doc.getRow() < 0) {
+                this.row++;
+            } else if (this.row - doc.getRow() > 0) {
+                this.row--;
+            }
+        }
+        // if on the same column dont change the row value
+        if (this.col == doc.getCol()) {
+        } else {// if there not on the same column move closer to the doctor
+            if (this.col - doc.getCol() < 0) {
+                this.col++;
+            } else if (this.col - doc.getCol() > 0) {
+                this.col--;
+            }
+        }
     }
 
     /**
@@ -35,7 +54,7 @@ public class Dalek {
      * @return This Dalek's row.
      */
     public int getRow() {
-
+        return this.row;
     }
 
     /**
@@ -44,14 +63,14 @@ public class Dalek {
      * @return This Dalek's column.
      */
     public int getCol() {
-
+        return this.col;
     }
 
     /**
      * Sets the Dalek to be in a crashed state.
      */
     public void crash() {
-
+        this.hasCrashed = true;
     }
 
     /**
@@ -60,7 +79,6 @@ public class Dalek {
      * @return true if this Dalek has crashed, false otherwise
      */
     public boolean hasCrashed() {
-
+        return this.hasCrashed;
     }
-
 }
